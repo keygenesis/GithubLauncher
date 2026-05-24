@@ -1,4 +1,4 @@
-using N64RecompLauncher.Services;
+using GithubLauncher.Services;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -6,7 +6,7 @@ using System.Threading;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace N64RecompLauncher.Models
+namespace GithubLauncher.Models
 {
     public class ModPackageViewModel : INotifyPropertyChanged
     {

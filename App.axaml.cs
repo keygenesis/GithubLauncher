@@ -17,7 +17,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace N64RecompLauncher;
+namespace GithubLauncher;
 
 public class App : Application, INotifyPropertyChanged
 {
@@ -130,7 +130,7 @@ public class App : Application, INotifyPropertyChanged
 
     private static bool _hasCheckedForAppUpdates = false;
     private static readonly object _updateLock = new object();
-    private const string Repository = "SirDiabo/N64RecompLauncher";
+    private const string Repository = "SirDiabo/GithubLauncher";
     private const string VersionFileName = "version.txt";
     private const string UpdateCheckFileName = "update_check.json";
     private const string BackupDirectoryPrefix = "backup_";
@@ -255,7 +255,7 @@ public class App : Application, INotifyPropertyChanged
                     using (var httpClient = new HttpClient())
                     {
                         httpClient.Timeout = DownloadTimeout;
-                        httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("N64RecompLauncher-Updater");
+                        httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("GithubLauncher-Updater");
 
                         var settings = AppSettings.Load();
                         if (!string.IsNullOrEmpty(settings?.GitHubApiToken))
@@ -299,7 +299,7 @@ public class App : Application, INotifyPropertyChanged
                         using (var httpClient = new HttpClient())
                         {
                             httpClient.Timeout = DownloadTimeout;
-                            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("N64RecompLauncher-Updater");
+                            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("GithubLauncher-Updater");
 
                             var settings = AppSettings.Load();
                             if (!string.IsNullOrEmpty(settings?.GitHubApiToken))
@@ -337,7 +337,7 @@ public class App : Application, INotifyPropertyChanged
         using (var httpClient = new HttpClient())
         {
             httpClient.Timeout = DownloadTimeout;
-            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("N64RecompLauncher-Updater");
+            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("GithubLauncher-Updater");
 
             var settings = AppSettings.Load();
             if (!string.IsNullOrEmpty(settings?.GitHubApiToken))
@@ -824,7 +824,7 @@ public class App : Application, INotifyPropertyChanged
                 progressWindow?.UpdateProgress(100, "Download complete. Extracting...");
                 await Task.Delay(500); // Brief pause so user can see 100%
 
-                string tempUpdateFolder = Path.Combine(Path.GetTempPath(), "N64RecompLauncher_temp_update");
+                string tempUpdateFolder = Path.Combine(Path.GetTempPath(), "GithubLauncher_temp_update");
                 if (Directory.Exists(tempUpdateFolder))
                 {
                     Directory.Delete(tempUpdateFolder, true);
@@ -979,7 +979,7 @@ public class App : Application, INotifyPropertyChanged
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                mainExecutable = Path.Combine(updateDirectory, "N64RecompLauncher.exe");
+                mainExecutable = Path.Combine(updateDirectory, "GithubLauncher.exe");
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
@@ -992,12 +992,12 @@ public class App : Application, INotifyPropertyChanged
                 }
                 else
                 {
-                    mainExecutable = Path.Combine(updateDirectory, "N64RecompLauncher");
+                    mainExecutable = Path.Combine(updateDirectory, "GithubLauncher");
                 }
             }
             else
             {
-                mainExecutable = Path.Combine(updateDirectory, "N64RecompLauncher");
+                mainExecutable = Path.Combine(updateDirectory, "GithubLauncher");
             }
 
             if (!File.Exists(mainExecutable) && !Directory.Exists(mainExecutable))
@@ -1029,7 +1029,7 @@ public class App : Application, INotifyPropertyChanged
         int currentProcessId = Environment.ProcessId;
         string applicationExecutable = Process.GetCurrentProcess().MainModule?.FileName
             ?? throw new InvalidOperationException("Could not determine the current application executable path.");
-        string backupDir = Path.Combine(Path.GetTempPath(), "N64RecompLauncher_backup_" + DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+        string backupDir = Path.Combine(Path.GetTempPath(), "GithubLauncher_backup_" + DateTime.Now.ToString("yyyyMMdd_HHmmss"));
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
@@ -1043,14 +1043,14 @@ public class App : Application, INotifyPropertyChanged
 
     private async Task CreateWindowsUpdaterScript(GitHubRelease latestRelease, string tempUpdateFolder, string tempDownloadPath, string currentAppDirectory, UpdateCheckInfo updateCheckInfo, string applicationExecutable, string backupDir, int currentProcessId)
     {
-        string updaterScriptPath = Path.Combine(Path.GetTempPath(), "N64RecompLauncher_Updater.cmd");
+        string updaterScriptPath = Path.Combine(Path.GetTempPath(), "GithubLauncher_Updater.cmd");
         string updateCheckFilePath = Path.Combine(currentAppDirectory, UpdateCheckFileName);
 
         string scriptContent = $@"@echo off
-echo N64RecompLauncher Updater - Version {latestRelease.tag_name}
+echo GithubLauncher Updater - Version {latestRelease.tag_name}
 echo.
 
-echo Waiting for N64RecompLauncher to close...
+echo Waiting for GithubLauncher to close...
 set /A waitCount=0
 :wait_loop
 tasklist /FI ""PID eq {currentProcessId}"" 2>NUL | find /I ""{currentProcessId}"">NUL
@@ -1095,7 +1095,7 @@ echo Updating version info...
 echo {{""CurrentVersion"":""{latestRelease.tag_name}"",""LastCheckTime"":""{DateTime.UtcNow:o}"",""LastKnownVersion"":""{latestRelease.tag_name}"",""ETag"":"""",""UpdateAvailable"":false}} > ""{updateCheckFilePath}""
 
 echo Update completed successfully!
-echo Restarting N64RecompLauncher...
+echo Restarting GithubLauncher...
 start """" ""{applicationExecutable}""
 
 :cleanup
@@ -1129,17 +1129,17 @@ del ""%~f0""
 
     private async Task CreateUnixUpdaterScript(GitHubRelease latestRelease, string tempUpdateFolder, string tempDownloadPath, string currentAppDirectory, UpdateCheckInfo updateCheckInfo, string applicationExecutable, string backupDir, int currentProcessId)
     {
-        string updaterScriptPath = Path.Combine(Path.GetTempPath(), "N64RecompLauncher_Updater.sh");
+        string updaterScriptPath = Path.Combine(Path.GetTempPath(), "GithubLauncher_Updater.sh");
         string updateCheckFilePath = Path.Combine(currentAppDirectory, UpdateCheckFileName);
 
         bool isMacAppBundle = RuntimeInformation.IsOSPlatform(OSPlatform.OSX) &&
                              Directory.GetDirectories(tempUpdateFolder, "*.app", SearchOption.TopDirectoryOnly).Any();
 
         string scriptContent = $@"#!/bin/bash
-echo ""N64RecompLauncher Updater - Version {latestRelease.tag_name}""
+echo ""GithubLauncher Updater - Version {latestRelease.tag_name}""
 echo
 
-echo ""Waiting for N64RecompLauncher to close...""
+echo ""Waiting for GithubLauncher to close...""
 waitCount=0
 while kill -0 {currentProcessId} 2>/dev/null; do
     if [ ""$waitCount"" -ge {UpdaterProcessExitTimeoutSeconds} ]; then
@@ -1197,30 +1197,30 @@ if [ ""{RuntimeInformation.IsOSPlatform(OSPlatform.OSX).ToString().ToLower()}"" 
     appBundle=$(find ""$appDir"" -maxdepth 1 -name ""*.app"" -type d | head -n 1)
     if [ -n ""$appBundle"" ]; then
         echo ""Found .app bundle: $appBundle""
-    elif [ -f ""$appDir/N64RecompLauncher"" ]; then
-        chmod +x ""$appDir/N64RecompLauncher""
+    elif [ -f ""$appDir/GithubLauncher"" ]; then
+        chmod +x ""$appDir/GithubLauncher""
     fi
 else
-    if [ -f ""$appDir/N64RecompLauncher"" ]; then
-        chmod +x ""$appDir/N64RecompLauncher""
+    if [ -f ""$appDir/GithubLauncher"" ]; then
+        chmod +x ""$appDir/GithubLauncher""
     fi
 fi
 
-echo ""Restarting N64RecompLauncher...""
+echo ""Restarting GithubLauncher...""
 
 if [ ""{RuntimeInformation.IsOSPlatform(OSPlatform.OSX).ToString().ToLower()}"" = ""true"" ]; then
     appBundle=$(find ""$appDir"" -maxdepth 1 -name ""*.app"" -type d | head -n 1)
     if [ -n ""$appBundle"" ]; then
         echo ""Starting .app bundle: $appBundle""
         nohup open ""$appBundle"" > /dev/null 2>&1 &
-    elif [ -f ""$appDir/N64RecompLauncher"" ]; then
+    elif [ -f ""$appDir/GithubLauncher"" ]; then
         cd ""$appDir""
-        nohup ""./N64RecompLauncher"" > /dev/null 2>&1 &
+        nohup ""./GithubLauncher"" > /dev/null 2>&1 &
     fi
 else
-    if [ -f ""$appDir/N64RecompLauncher"" ]; then
+    if [ -f ""$appDir/GithubLauncher"" ]; then
         cd ""$appDir""
-        nohup ""./N64RecompLauncher"" > /dev/null 2>&1 &
+        nohup ""./GithubLauncher"" > /dev/null 2>&1 &
     fi
 fi
 

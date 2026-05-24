@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace N64RecompLauncher.Services
+namespace GithubLauncher.Services
 {
     public class ThunderstorePackage
     {
@@ -96,7 +96,6 @@ namespace N64RecompLauncher.Services
         private readonly HttpClient _client;
         private bool _disposed = false;
         
-        //Add Thunderstore pages and github repository paths here
         private static readonly Dictionary<string, string> CommunityMapping = new()
         {
             { "Zelda64Recomp/Zelda64Recomp", "zelda-64-recompiled" },
@@ -111,7 +110,7 @@ namespace N64RecompLauncher.Services
         public ThunderstoreService()
         {
             _client = new HttpClient();
-            _client.DefaultRequestHeaders.UserAgent.ParseAdd(N64RecompLauncherProfile.Instance.UserAgent);
+            _client.DefaultRequestHeaders.UserAgent.ParseAdd(GithubLauncherProfile.Instance.UserAgent);
             _client.Timeout = TimeSpan.FromSeconds(30);
         }
 

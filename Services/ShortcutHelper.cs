@@ -1,4 +1,4 @@
-﻿using N64RecompLauncher.Models;
+using GithubLauncher.Models;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -10,11 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace N64RecompLauncher.Services
+namespace GithubLauncher.Services
 {
     public static class ShortcutHelper
     {
-        private static readonly string LauncherSteamTag = N64RecompLauncherProfile.Instance.SteamTag;
+        private static readonly string LauncherSteamTag = GithubLauncherProfile.Instance.SteamTag;
 
         public static void CreateGameShortcut(GameInfo game, string launcherPath, string? cacheDirectory)
         {
@@ -277,7 +277,7 @@ namespace N64RecompLauncher.Services
                 $Shortcut.TargetPath = '{launcherPath}'
                 $Shortcut.Arguments = '--run {gameName}'
                 $Shortcut.WorkingDirectory = '{Path.GetDirectoryName(launcherPath)}'
-                $Shortcut.Description = 'Launch {gameName} via N64 Recomp Launcher'
+                $Shortcut.Description = 'Launch {gameName} via Github Launcher'
                 {(iconPath != null ? $"$Shortcut.IconLocation = '{iconPath},0'" : "")}
                 $Shortcut.Save()
                 ";
@@ -310,7 +310,7 @@ namespace N64RecompLauncher.Services
                 Icon={iconPath ?? ""}
                 Terminal=false
                 Categories=Game;
-                Comment=Launch {safeGameName} via N64 Recomp Launcher
+                Comment=Launch {safeGameName} via Github Launcher
                 ";
 
             File.WriteAllText(desktopFilePath, desktopFileContent);

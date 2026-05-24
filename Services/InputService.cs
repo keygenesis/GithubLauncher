@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace N64RecompLauncher.Services
+namespace GithubLauncher.Services
 {
     public class InputService : IDisposable
     {

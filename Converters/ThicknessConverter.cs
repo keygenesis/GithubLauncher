@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Globalization;
 using Avalonia.Data.Converters;
 using Avalonia;
 
-namespace N64RecompLauncher
+namespace GithubLauncher
 {
     public class ThicknessConverter : IValueConverter
     {

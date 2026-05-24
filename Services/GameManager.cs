@@ -1,17 +1,17 @@
 using GitHubLauncher.Core.Models;
 using GitHubLauncher.Core.Services;
-using N64RecompLauncher.Models;
+using GithubLauncher.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 
-namespace N64RecompLauncher.Services
+namespace GithubLauncher.Services
 {
     public class GameManager : INotifyPropertyChanged, IDisposable
     {
-        private static readonly N64RecompLauncherProfile Profile = N64RecompLauncherProfile.Instance;
+        private static readonly GithubLauncherProfile Profile = GithubLauncherProfile.Instance;
         public AppSettings _settings = new();
         private readonly HttpClient _httpClient;
         private bool _disposed = false;
@@ -1106,29 +1106,6 @@ namespace N64RecompLauncher.Services
                     AddHiddenGame(settings, game);
                 }
             }
-            AppSettings.Save(settings);
-            await LoadGamesAsync();
-        }
-
-        public async Task OnlyShowN64RecompGames()
-        {
-            var settings = AppSettings.Load();
-            settings.HiddenGames.Clear();
-            AppSettings.Save(settings);
-
-            await LoadGamesAsync();
-
-            if (Games == null)
-                return;
-
-            foreach (var game in Games)
-            {
-                if (game != null && game.IsCustom && !IsGameHidden(settings, game))
-                {
-                    AddHiddenGame(settings, game);
-                }
-            }
-
             AppSettings.Save(settings);
             await LoadGamesAsync();
         }

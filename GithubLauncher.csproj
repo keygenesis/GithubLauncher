@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net9.0</TargetFramework>
 		<ApplicationIcon>icon.ico</ApplicationIcon>
-		<AssemblyTitle>N64Recomp Launcher</AssemblyTitle>
-		<AssemblyDescription>Download and manage N64 recompiled game ports</AssemblyDescription>
+		<AssemblyTitle>Github Launcher</AssemblyTitle>
+		<AssemblyDescription>Download and manage GitHub-hosted game ports</AssemblyDescription>
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<FileVersion>1.0.0.0</FileVersion>
 		<Configurations>Debug;Release</Configurations>
@@ -43,12 +43,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="lib/GitHubLauncher.Core/GitHubLauncher.Core.csproj" />
+		<ProjectReference Include="lib\GitHubLauncher.Core\GitHubLauncher.Core.csproj" />
 	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="lib\GitHubLauncher.Core\**\*.cs" />
-    <EmbeddedResource Remove="lib\GitHubLauncher.Core\**\*.*" />
-    <None Remove="lib\GitHubLauncher.Core\**\*.*" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="lib\GitHubLauncher.Core\**\*.cs" />
+		<EmbeddedResource Remove="lib\GitHubLauncher.Core\**\*.*" />
+		<None Remove="lib\GitHubLauncher.Core\**\*.*" />
+	</ItemGroup>
 </Project>

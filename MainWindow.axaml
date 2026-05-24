@@ -1,10 +1,10 @@
-<Window x:Class="N64RecompLauncher.MainWindow"
+<Window x:Class="GithubLauncher.MainWindow"
 		xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:anim="https://github.com/whistyun/AnimatedImage.Avalonia"
-        xmlns:local="clr-namespace:N64RecompLauncher"
+        xmlns:local="clr-namespace:GithubLauncher"
 		xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
-        Title="N64Recomp Launcher"
+        Title="Github Launcher"
 		Width="1280" Height="720"
 		MinWidth="750" MinHeight="490"
         Background="{Binding WindowBackground}"
@@ -815,12 +815,12 @@
 
 				<!-- Logo/Header -->
 				<StackPanel Grid.Row="0" Margin="20">
-					<Image anim:ImageBehavior.AnimatedSource="avares://N64RecompLauncher/Assets/icon.gif"
-											Width="80"
-											Height="80"
+					<Image anim:ImageBehavior.AnimatedSource="avares://GithubLauncher/Assets/app.gif"
+											Width="90"
+											Height="90"
 											HorizontalAlignment="Center"
 											Margin="0,0,0,15"/>
-					<TextBlock Text="N64RECOMP"
+					<TextBlock Text="GITHUB"
 							   FontSize="18"
 							   FontWeight="Bold"
 							   Foreground="{DynamicResource ThemeText}"
@@ -856,7 +856,7 @@
 																Height="64"/>
 								<StackPanel Orientation="Horizontal">
 									<Image Width="32" Height="32" 
-										   Source="avares://N64RecompLauncher/Assets/Continue.png"
+										   Source="avares://GithubLauncher/Assets/Continue.png"
 										   Margin="0,0,12,0"/>
 									<TextBlock Text="Continue" 
 											  VerticalAlignment="Center"/>
@@ -874,7 +874,7 @@
 								Click="ManageGamesButton_Click">
 							<StackPanel Orientation="Horizontal">
 								<Image Width="32" Height="32" 
-									   Source="avares://N64RecompLauncher/Assets/DefaultGame.png"
+									   Source="avares://GithubLauncher/Assets/DefaultGame.png"
 									   Margin="0,0,12,0"/>
 								<TextBlock Text="Manage Games" VerticalAlignment="Center"/>
 							</StackPanel>
@@ -890,7 +890,7 @@
 								Click="SettingsButton_Click">
 							<StackPanel Orientation="Horizontal">
 								<Image Width="32" Height="32" 
-									   Source="avares://N64RecompLauncher/Assets/Settings.png"
+									   Source="avares://GithubLauncher/Assets/Settings.png"
 									   Margin="0,0,12,0"/>
 								<TextBlock Text="Settings" VerticalAlignment="Center"/>
 							</StackPanel>
@@ -906,7 +906,7 @@
 								Click="CheckforUpdates_Click">
 							<StackPanel Orientation="Horizontal">
 								<Image Width="32" Height="32" 
-									   Source="avares://N64RecompLauncher/Assets/CheckForUpdates.png"
+									   Source="avares://GithubLauncher/Assets/CheckForUpdates.png"
 									   Margin="0,0,12,0"/>
 								<TextBlock Text="Check for Updates" VerticalAlignment="Center"/>
 							</StackPanel>
@@ -970,15 +970,6 @@
 									IsVisible="{Binding ShowCustomGames}">
 								<TextBlock Text="Custom Games Only"/>
 							</Button>
-
-							<Button x:Name="OnlyN64RecompGamesButton"
-									Classes="settings"
-									Width="216"
-									HorizontalAlignment="Left"
-									Click="OnlyN64RecompGamesButton_Click"
-									IsVisible="{Binding ShowCustomGames}">
-								<TextBlock Text="N64Recomp Only"/>
-							</Button>
 						</StackPanel>
 				</ScrollViewer>
 
@@ -992,7 +983,7 @@
 							Click="DiscordButton_Click">
 						<StackPanel Orientation="Horizontal" Margin="12,0">
 							<Image Width="32" Height="32" 
-								   Source="avares://N64RecompLauncher/Assets/Discord.png"
+								   Source="avares://GithubLauncher/Assets/Discord.png"
 								   Margin="0,0,12,0"/>
 							<TextBlock Text="Discord" 
 									   Foreground="{DynamicResource ThemeTextSecondary}"
@@ -1008,7 +999,7 @@
 							Click="GithubButton_Click">
 						<StackPanel Orientation="Horizontal" Margin="12,0">
 							<Image Width="32" Height="32" 
-								   Source="avares://N64RecompLauncher/Assets/Github.png"
+								   Source="avares://GithubLauncher/Assets/Github.png"
 								   Margin="0,0,12,0"/>
 							<TextBlock Text="GitHub" 
 									   Foreground="{DynamicResource ThemeTextSecondary}"
@@ -1084,7 +1075,7 @@
 									Click="MinimizeButton_Click">
 								<Image Width="28" 
 									   Height="28" 
-									   Source="avares://N64RecompLauncher/Assets/Icons/button_minimize.png"/>
+									   Source="avares://GithubLauncher/Assets/Icons/button_minimize.png"/>
 							</Button>
 
 							<!-- Fullscreen Button -->
@@ -1094,7 +1085,7 @@
 									Click="ToggleFullscreen_Click">
 								<Image Width="28" 
 									   Height="28" 
-									   Source="avares://N64RecompLauncher/Assets/Icons/button_fullscreen.png"/>
+									   Source="avares://GithubLauncher/Assets/Icons/button_fullscreen.png"/>
 							</Button>
 
 							<!-- Close Button -->
@@ -1104,7 +1095,7 @@
 									Click="CloseLauncher_Click">
 								<Image Width="28" 
 									   Height="28" 
-									   Source="avares://N64RecompLauncher/Assets/Icons/button_close.png"/>
+									   Source="avares://GithubLauncher/Assets/Icons/button_close.png"/>
 							</Button>
 						</StackPanel>
 				</Grid>
@@ -1565,22 +1556,22 @@
 												<Button Classes="modern-icon" Width="52" Height="52"
 														Click="LayoutPreset_Landscape_Click"
 														ToolTip.Tip="Landscape">
-													<Image Width="52" Height="52" Source="avares://N64RecompLauncher/Assets/Icons/preset_landscape.png"/>
+													<Image Width="52" Height="52" Source="avares://GithubLauncher/Assets/Icons/preset_landscape.png"/>
 												</Button>
 												<Button Classes="modern-icon" Width="52" Height="52"
 														Click="LayoutPreset_Square_Click"
 														ToolTip.Tip="Square">
-													<Image Width="52" Height="52" Source="avares://N64RecompLauncher/Assets/Icons/preset_square.png"/>
+													<Image Width="52" Height="52" Source="avares://GithubLauncher/Assets/Icons/preset_square.png"/>
 												</Button>
 												<Button Classes="modern-icon" Width="52" Height="52"
 														Click="LayoutPreset_Portrait_Click"
 														ToolTip.Tip="Portrait">
-													<Image Width="52" Height="52" Source="avares://N64RecompLauncher/Assets/Icons/preset_portrait.png"/>
+													<Image Width="52" Height="52" Source="avares://GithubLauncher/Assets/Icons/preset_portrait.png"/>
 												</Button>
 												<Button Classes="modern-icon" Width="52" Height="52"
 														Click="LayoutPreset_List_Click"
 														ToolTip.Tip="List">
-													<Image Width="52" Height="52" Source="avares://N64RecompLauncher/Assets/Icons/preset_list.png"/>
+													<Image Width="52" Height="52" Source="avares://GithubLauncher/Assets/Icons/preset_list.png"/>
 												</Button>
 											</StackPanel>
 										</StackPanel>

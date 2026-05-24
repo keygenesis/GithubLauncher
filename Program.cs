@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace N64RecompLauncher
+namespace GithubLauncher
 {
     class Program
     {

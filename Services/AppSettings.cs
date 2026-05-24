@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using GitHubLauncher.Core.Models;
 
-namespace N64RecompLauncher
+namespace GithubLauncher
 {
     public class AppSettings
     {

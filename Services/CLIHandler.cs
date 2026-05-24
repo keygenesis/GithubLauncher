@@ -1,6 +1,7 @@
 using GitHubLauncher.Core.Models;
-using N64RecompLauncher.Models;
-using N64RecompLauncher.Services;
+using GitHubLauncher.Core.Services;
+using GithubLauncher.Models;
+using GithubLauncher.Services;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -12,7 +13,7 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace N64RecompLauncher
+namespace GithubLauncher
 {
     public class CLIHandler
     {
@@ -21,7 +22,7 @@ namespace N64RecompLauncher
         private const ConsoleColor ColorWarning = ConsoleColor.Yellow;
         private const ConsoleColor ColorError = ConsoleColor.Red;
         private const ConsoleColor ColorMuted = ConsoleColor.DarkGray;
-        private static readonly N64RecompLauncherProfile Profile = N64RecompLauncherProfile.Instance;
+        private static readonly GithubLauncherProfile Profile = GithubLauncherProfile.Instance;
         private static readonly string Repository = Profile.Repository;
         private const string VersionFileName = "version.txt";
         private const string UpdateCheckFileName = "update_check.json";
@@ -232,7 +233,7 @@ namespace N64RecompLauncher
                 client.Timeout = TimeSpan.FromSeconds(5);
                 client.DefaultRequestHeaders.Add("User-Agent", Profile.CliUserAgent);
 
-                var response = await client.GetStringAsync("https://api.github.com/repos/sirdiabo/N64RecompLauncher/releases/latest");
+                var response = await client.GetStringAsync("https://api.github.com/repos/sirdiabo/GithubLauncher/releases/latest");
                 using var doc = JsonDocument.Parse(response);
                 var latestTag = doc.RootElement.GetProperty("tag_name").GetString();
 
@@ -251,7 +252,7 @@ namespace N64RecompLauncher
 
         private void ShowHelp()
         {
-            Console.WriteLine("Usage: N64RecompLauncher [command] [game name]");
+            Console.WriteLine("Usage: GithubLauncher [command] [game name]");
             Console.WriteLine();
             WriteColor("Commands:", ColorTitle);
             Console.WriteLine();
@@ -265,10 +266,10 @@ namespace N64RecompLauncher
             Console.WriteLine();
             WriteColor("Examples:", ColorMuted);
             Console.WriteLine();
-            Console.WriteLine("  N64RecompLauncher --list");
-            Console.WriteLine("  N64RecompLauncher --download Banjo64");
-            Console.WriteLine("  N64RecompLauncher --run Banjo64");
-            Console.WriteLine("  N64RecompLauncher -r \"Mario Kart 64\"");
+            Console.WriteLine("  GithubLauncher --list");
+            Console.WriteLine("  GithubLauncher --download Banjo64");
+            Console.WriteLine("  GithubLauncher --run Banjo64");
+            Console.WriteLine("  GithubLauncher -r \"Mario Kart 64\"");
             Console.WriteLine();
         }
 
@@ -441,7 +442,7 @@ namespace N64RecompLauncher
                             // If running the CLI version, try to find the GUI version
                             if (exePath.Contains("CLI", StringComparison.OrdinalIgnoreCase))
                             {
-                                var possibleGuiExe = Path.Combine(exeDir, "N64RecompLauncher.exe");
+                                var possibleGuiExe = Path.Combine(exeDir, "GithubLauncher.exe");
                                 if (File.Exists(possibleGuiExe))
                                 {
                                     guiExe = possibleGuiExe;
@@ -871,7 +872,7 @@ namespace N64RecompLauncher
                 Console.WriteLine();
 
                 string tempDownloadPath = Path.Combine(Path.GetTempPath(), asset.name);
-                string tempUpdateFolder = Path.Combine(Path.GetTempPath(), "N64RecompLauncher_temp_update");
+                string tempUpdateFolder = Path.Combine(Path.GetTempPath(), "GithubLauncher_temp_update");
                 if (Directory.Exists(tempUpdateFolder))
                     Directory.Delete(tempUpdateFolder, true);
                 Directory.CreateDirectory(tempUpdateFolder);
@@ -945,8 +946,8 @@ namespace N64RecompLauncher
             }
 
             string executableName = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                ? "N64RecompLauncher.exe"
-                : "N64RecompLauncher";
+                ? "GithubLauncher.exe"
+                : "GithubLauncher";
 
             string executablePath = Path.Combine(updateDirectory, executableName);
             return File.Exists(executablePath) && new FileInfo(executablePath).Length > 1024;
@@ -977,16 +978,16 @@ namespace N64RecompLauncher
             string applicationExecutable = Environment.ProcessPath
                 ?? Process.GetCurrentProcess().MainModule?.FileName
                 ?? throw new InvalidOperationException("Could not determine launcher executable path.");
-            string backupDir = Path.Combine(Path.GetTempPath(), "N64RecompLauncher_backup_" + DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+            string backupDir = Path.Combine(Path.GetTempPath(), "GithubLauncher_backup_" + DateTime.Now.ToString("yyyyMMdd_HHmmss"));
             string updateCheckFilePath = Path.Combine(currentAppDirectory, UpdateCheckFileName);
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                string updaterScriptPath = Path.Combine(Path.GetTempPath(), "N64RecompLauncher_Updater.cmd");
+                string updaterScriptPath = Path.Combine(Path.GetTempPath(), "GithubLauncher_Updater.cmd");
                 string scriptContent = $@"@echo off
-echo N64RecompLauncher Updater - Version {release.tag_name}
+echo GithubLauncher Updater - Version {release.tag_name}
 echo.
-echo Waiting for N64RecompLauncher CLI to close...
+echo Waiting for GithubLauncher CLI to close...
 set /A waitCount=0
 :wait_loop
 tasklist /FI ""PID eq {currentProcessId}"" 2>NUL | find /I ""{currentProcessId}"">NUL
@@ -1046,11 +1047,11 @@ del ""%~f0""
             }
             else
             {
-                string updaterScriptPath = Path.Combine(Path.GetTempPath(), "N64RecompLauncher_Updater.sh");
+                string updaterScriptPath = Path.Combine(Path.GetTempPath(), "GithubLauncher_Updater.sh");
                 string scriptContent = $@"#!/bin/bash
-echo ""N64RecompLauncher Updater - Version {release.tag_name}""
+echo ""GithubLauncher Updater - Version {release.tag_name}""
 echo
-echo ""Waiting for N64RecompLauncher CLI to close...""
+echo ""Waiting for GithubLauncher CLI to close...""
 waitCount=0
 while kill -0 {currentProcessId} 2>/dev/null; do
     if [ ""$waitCount"" -ge {UpdaterProcessExitTimeoutSeconds} ]; then
@@ -1088,10 +1089,10 @@ cat > ""{updateCheckFilePath}"" << 'EOF'
 {{""CurrentVersion"":""{release.tag_name}"",""LastCheckTime"":""{DateTime.UtcNow:o}"",""LastKnownVersion"":""{release.tag_name}"",""ETag"":"""",""UpdateAvailable"":false}}
 EOF
 
-if [ -f ""$appDir/N64RecompLauncher"" ]; then
-    chmod +x ""$appDir/N64RecompLauncher""
+if [ -f ""$appDir/GithubLauncher"" ]; then
+    chmod +x ""$appDir/GithubLauncher""
     cd ""$appDir""
-    nohup ""./N64RecompLauncher"" > /dev/null 2>&1 &
+    nohup ""./GithubLauncher"" > /dev/null 2>&1 &
 fi
 
 rm -rf ""$backupDir"" ""$updateDir"" 2>/dev/null || true

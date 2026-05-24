@@ -1,20 +1,20 @@
 using GitHubLauncher.Core.Services;
 
-namespace N64RecompLauncher.Services
+namespace GithubLauncher.Services
 {
-    public sealed class N64RecompLauncherProfile : LauncherProfile 
+    public sealed class GithubLauncherProfile : LauncherProfile 
     {
-        public static N64RecompLauncherProfile Instance { get; } = new();
+        public static GithubLauncherProfile Instance { get; } = new();
 
-        public override string DisplayName => "N64Recomp Launcher";
-        public override string ApplicationId => "N64RecompLauncher";
-        public override string Repository => "SirDiabo/N64RecompLauncher";
-        public override string ExecutableName => "N64RecompLauncher";
-        public override string DefaultInstallFolderName => "RecompiledGames";
-        public override string UserAgent => "N64Recomp-Launcher/1.0";
-        public override string CliUserAgent => "N64RecompLauncher-CLI";
-        public override string UpdaterUserAgent => "N64RecompLauncher-Updater";
-        public override string SteamTag => "N64 Recomp Launcher";
+        public override string DisplayName => "Github Launcher";
+        public override string ApplicationId => "GithubLauncher";
+        public override string Repository => "SirDiabo/GithubLauncher";
+        public override string ExecutableName => "GithubLauncher";
+        public override string DefaultInstallFolderName => "Games";
+        public override string UserAgent => "GithubLauncher/1.0";
+        public override string CliUserAgent => "GithubLauncher-CLI";
+        public override string UpdaterUserAgent => "GithubLauncher-Updater";
+        public override string SteamTag => "Github Launcher";
 
         public override (List<object> standard, List<object> experimental, List<object> custom) GetDefaultGamesData()
         {

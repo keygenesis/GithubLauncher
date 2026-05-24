@@ -6,7 +6,7 @@ using Avalonia.Media;
 using Avalonia.Threading;
 using GitHubLauncher.Core.Models;
 using GitHubLauncher.Core.Services;
-using N64RecompLauncher.Services;
+using GithubLauncher.Services;
 using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Text.Json;
 using System.Linq;
 
-namespace N64RecompLauncher.Models
+namespace GithubLauncher.Models
 {
 
     public class GameInfo : INotifyPropertyChanged, IDisposable
@@ -368,12 +368,12 @@ namespace N64RecompLauncher.Models
             {
                 var imagePath = Status switch
                 {
-                    GameStatus.NotInstalled => "avares://N64RecompLauncher/Assets/Icons/button_download.png",
-                    GameStatus.Installed => "avares://N64RecompLauncher/Assets/Icons/button_launch.png",
-                    GameStatus.UpdateAvailable => "avares://N64RecompLauncher/Assets/Icons/button_update.png",
-                    GameStatus.Downloading => "avares://N64RecompLauncher/Assets/Icons/button_loading.png",
-                    GameStatus.Installing => "avares://N64RecompLauncher/Assets/Icons/button_loading.png",
-                    _ => "avares://N64RecompLauncher/Assets/Icons/button_loading.png"
+                    GameStatus.NotInstalled => "avares://GithubLauncher/Assets/Icons/button_download.png",
+                    GameStatus.Installed => "avares://GithubLauncher/Assets/Icons/button_launch.png",
+                    GameStatus.UpdateAvailable => "avares://GithubLauncher/Assets/Icons/button_update.png",
+                    GameStatus.Downloading => "avares://GithubLauncher/Assets/Icons/button_loading.png",
+                    GameStatus.Installing => "avares://GithubLauncher/Assets/Icons/button_loading.png",
+                    _ => "avares://GithubLauncher/Assets/Icons/button_loading.png"
                 };
 
                 // Only create new bitmap if image path changed
@@ -1089,7 +1089,7 @@ namespace N64RecompLauncher.Models
 
                 using var httpClient = new HttpClient();
                 httpClient.Timeout = TimeSpan.FromSeconds(10);
-                httpClient.DefaultRequestHeaders.Add("User-Agent", "N64Recomp-Launcher/1.0");
+                httpClient.DefaultRequestHeaders.Add("User-Agent", "Github-Launcher/1.0");
 
                 var iconData = await httpClient.GetByteArrayAsync(defaultUrl);
 
@@ -1841,7 +1841,7 @@ namespace N64RecompLauncher.Models
                 // Exclude false positives
                 if (!HasAnyOf(assetNameLower, "linux", "macos", "darwin", ".deb", ".rpm", ".appimage", ".dmg"))
                 {
-                    return "avares://N64RecompLauncher/Assets/Icons/platform_win.png";
+                    return "avares://GithubLauncher/Assets/Icons/platform_win.png";
                 }
             }
 
@@ -1852,7 +1852,7 @@ namespace N64RecompLauncher.Models
                 // Exclude false positives
                 if (!HasAnyOf(assetNameLower, "linux", "windows", "win32", "win64", ".exe"))
                 {
-                    return "avares://N64RecompLauncher/Assets/Icons/platform_mac.png";
+                    return "avares://GithubLauncher/Assets/Icons/platform_mac.png";
                 }
             }
 
@@ -1862,7 +1862,7 @@ namespace N64RecompLauncher.Models
                 // Exclude false positives
                 if (!HasAnyOf(assetNameLower, "windows", "win32", "win64", "macos", "osx", "darwin", ".exe", ".dmg"))
                 {
-                    return "avares://N64RecompLauncher/Assets/Icons/platform_lin.png";
+                    return "avares://GithubLauncher/Assets/Icons/platform_lin.png";
                 }
             }
 

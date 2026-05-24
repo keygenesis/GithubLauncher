@@ -1,10 +1,10 @@
-﻿# N64Recomp Launcher
+# Github Launcher
 
 [![.NET 9](https://img.shields.io/badge/.NET-9-512BD4)](https://dotnet.microsoft.com/)
-[![License](https://img.shields.io/github/license/SirDiabo/N64RecompLauncher)](https://github.com/SirDiabo/N64RecompLauncher/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/SirDiabo/GithubLauncher)](https://github.com/SirDiabo/GithubLauncher/blob/main/LICENSE)
 
-![N64Recomp Launcher Screenshot](Assets/LauncherScreenshot.png)
-A modern, user-friendly launcher application for managing and running N64 recompiled games. This tool streamlines the process of downloading, installing, and launching your favorite N64 titles.
+![Github Launcher Screenshot](Assets/LauncherScreenshot.png)
+A modern, user-friendly launcher application for managing and running GitHub-hosted games. This tool streamlines the process of downloading, installing, and launching your favorite titles.
 
 ## Features
 
@@ -22,7 +22,7 @@ A modern, user-friendly launcher application for managing and running N64 recomp
 
 ### Installation
 
-1. Download the latest release from the [Releases](https://github.com/SirDiabo/N64RecompLauncher/releases) page
+1. Download the latest release from the [Releases](https://github.com/SirDiabo/GithubLauncher/releases) page
 2. Extract the downloaded archive to your preferred location
 3. Run the executable.
 
@@ -87,10 +87,10 @@ Each game entry requires the following properties:
 ## Support
 
 If you encounter any issues or have questions:
-- [Open an issue](https://github.com/SirDiabo/N64RecompLauncher/issues)
+- [Open an issue](https://github.com/SirDiabo/GithubLauncher/issues)
 - Check existing issues for solutions
-- Join the [N64 Recomp Discord](https://discord.gg/DptggHetGZ)
+- Join the [GitHub Launcher Discord](https://discord.gg/DptggHetGZ)
 
 ---
 
-<p align="center">Made with ❤️ for the N64 community</p>
+<p align="center">Made for the GitHub Launcher community</p>

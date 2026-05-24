@@ -3,8 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Threading;
-using N64RecompLauncher.Models;
-using N64RecompLauncher.Services;
+using GithubLauncher.Models;
+using GithubLauncher.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +19,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace N64RecompLauncher
+namespace GithubLauncher
 {
     public partial class ModManagerWindow : Window, INotifyPropertyChanged
     {
