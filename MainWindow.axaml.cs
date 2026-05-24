@@ -2402,40 +2402,6 @@ namespace GithubLauncher
             }
         }
 
-        private void DiscordButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string url = "https://discord.gg/DptggHetGZ";
-                OpenUrl(url);
-            }
-            catch (Exception ex)
-            {
-                _ = ShowMessageBoxAsync($"Failed to open Discord link: {ex.Message}", "Action Error");
-            }
-        }
-        private void OpenModManager_Click(object sender, RoutedEventArgs e)
-        {
-            var menuItem = sender as MenuItem;
-            var game = menuItem?.CommandParameter as GameInfo;
-
-            if (game == null)
-            {
-                _ = ShowMessageBoxAsync("Unable to identify the selected game.", "Error");
-                return;
-            }
-
-                try
-                {
-                    var modManagerWindow = new ModManagerWindow(game, _gameManager.GamesFolder);
-                    _ = modManagerWindow.ShowDialog(this);
-                }
-                catch (Exception ex)
-                {
-                    _ = ShowMessageBoxAsync($"Failed to open mod manager: {ex.Message}", "Error");
-                }
-        }
-
         private async void LaunchGameMenu_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuItem;

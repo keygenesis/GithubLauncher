@@ -121,10 +121,6 @@
 												  Click="UpdateNowMenu_Click"
 												  CommandParameter="{Binding}"
 												  IsVisible="{Binding CanUpdate}"/>
-										<MenuItem Header="Browse Mods"
-										 		  Click="OpenModManager_Click"
-												  IsVisible="{Binding HasThunderstorePage}"
-									 	 		  CommandParameter="{Binding}"/>
 										<MenuItem Header="Open Folder"
 												  Click="OpenFolder_Click"
 												  IsVisible="{Binding IsInstalled}"
@@ -261,10 +257,6 @@
 											  Click="UpdateNowMenu_Click"
 											  CommandParameter="{Binding}"
 											  IsVisible="{Binding CanUpdate}"/>
-									<MenuItem Header="Browse Mods"
-											  Click="OpenModManager_Click"
-											  IsVisible="{Binding HasThunderstorePage}"
-											  CommandParameter="{Binding}"/>
 									<MenuItem Header="Open Folder"
 											  Click="OpenFolder_Click"
 											  IsVisible="{Binding IsInstalled}"
@@ -976,22 +968,6 @@
 				<!-- Footer Links -->
 				<StackPanel Grid.Row="4" Margin="12,0,12,8">
 						<Border Height="1" Background="{DynamicResource ThemeBorder}" Margin="-12,0,-12,8"/>
-					<Button Classes="iconbutton"
-							Width="216"
-							Height="44"
-							HorizontalAlignment="Left"
-							Click="DiscordButton_Click">
-						<StackPanel Orientation="Horizontal" Margin="12,0">
-							<Image Width="32" Height="32" 
-								   Source="avares://GithubLauncher/Assets/Discord.png"
-								   Margin="0,0,12,0"/>
-							<TextBlock Text="Discord" 
-									   Foreground="{DynamicResource ThemeTextSecondary}"
-									   FontSize="14"
-									   FontWeight="Medium"
-									   VerticalAlignment="Center"/>
-						</StackPanel>
-					</Button>
 					<Button Classes="iconbutton"
 							Width="216"
 							Height="44"
