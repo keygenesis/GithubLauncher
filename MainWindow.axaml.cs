@@ -2340,7 +2340,7 @@ namespace GithubLauncher
         {
             try
             {
-                string url = "https://https://ko-fi.com/sirdiabo/";
+                string url = "https://ko-fi.com/sirdiabo/";
                 OpenUrl(url);
             }
             catch (Exception ex)
