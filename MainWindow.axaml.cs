@@ -2336,6 +2336,19 @@ namespace GithubLauncher
             }
         }
 
+        private void KofiButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string url = "https://https://ko-fi.com/sirdiabo/";
+                OpenUrl(url);
+            }
+            catch (Exception ex)
+            {
+                _ = ShowMessageBoxAsync($"Failed to open Ko-Fi link: {ex.Message}", "Action Error");
+            }
+        }
+
         private void GithubButton_Click(object sender, RoutedEventArgs e)
         {
             try

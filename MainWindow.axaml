@@ -945,6 +945,22 @@
 							Width="216"
 							Height="44"
 							HorizontalAlignment="Left"
+							Click="KofiButton_Click">
+						<StackPanel Orientation="Horizontal" Margin="12,0">
+							<Image Width="32" Height="32" 
+								   Source="avares://GithubLauncher/Assets/Kofi.png"
+								   Margin="0,0,12,0"/>
+							<TextBlock Text="Donate" 
+									   Foreground="{DynamicResource ThemeTextSecondary}"
+									   FontSize="14"
+									   FontWeight="Medium"
+									   VerticalAlignment="Center"/>
+						</StackPanel>
+					</Button>
+					<Button Classes="iconbutton"
+							Width="216"
+							Height="44"
+							HorizontalAlignment="Left"
 							Click="GithubButton_Click">
 						<StackPanel Orientation="Horizontal" Margin="12,0">
 							<Image Width="32" Height="32" 
