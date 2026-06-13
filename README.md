@@ -4,7 +4,13 @@
 [![License](https://img.shields.io/github/license/SirDiabo/GithubLauncher)](https://github.com/SirDiabo/GithubLauncher/blob/main/LICENSE)
 
 >## Important
->This software was previously knows as the "N64Recomp Launcher", but this had to be changed due to the continued requests by the N64Recomp Tool Developers. If you are interested in a version of the launcher that is primarily for N64 Recompiled Games, then check out [this version](https://github.com/SirDiabo/GithubLauncher/releases/tag/v1.70).
+>### Migration from N64RecompLauncher to GithubLauncher
+>
+>This software was previously knows as the "N64Recomp Launcher", but this had to be changed due to continued requests by the N64Recomp Tool Developers. If you are interested in a version of the launcher that is primarily for N64 Recompiled Games, then check out [this version](https://github.com/SirDiabo/GithubLauncher/releases/tag/v1.70).
+>You can then go into the `update_check.json` and change the year in `LastCheckTime` to something like `9999` to disable self-updates.
+>
+>If you have an old version, and wish to update to the newer ones, you will have to update manually by dragging the new files into your launcher folder. You can then delete all files with "N64Recomp" in their names.
+>Your settings will remain compatible.
 
 ![Github Launcher Screenshot](Assets/LauncherScreenshot.png)
 A modern, user-friendly launcher application for managing and running GitHub-hosted applications. This tool streamlines the process of downloading, installing, and launching your favorite projects.
