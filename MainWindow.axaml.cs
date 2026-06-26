@@ -4545,9 +4545,9 @@ namespace GithubLauncher
             {
                 ColumnDefinitions = new ColumnDefinitions("*,Auto"),
             };
-            Grid.SetColumn(infoStack, 0);
+            Grid.SetColumn(contentStack, 0);
             Grid.SetColumn(addButton, 1);
-            grid.Children.Add(infoStack);
+            grid.Children.Add(contentStack);
             grid.Children.Add(addButton);
 
             return new Border
@@ -4585,7 +4585,7 @@ namespace GithubLauncher
                     Name = entry.Name,
                     Repository = entry.Repository,
                     FolderName = entry.FolderName,
-                    GameIconUrl = entry.GameIconUrl,
+                    GameIconUrl = entry.AppIconUrl,
                     IsCustom = true,
                     GameManager = _gameManager,
                 };
