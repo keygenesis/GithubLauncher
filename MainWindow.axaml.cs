@@ -11,6 +11,7 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using GitHubLauncher.Core.Models;
 using GitHubLauncher.Core.Services;
+using AsyncImageLoader;
 using GithubLauncher.Models;
 using GithubLauncher.Services;
 using System.Collections.ObjectModel;
@@ -4214,10 +4215,7 @@ namespace GithubLauncher
             }
         }
 
-        // -------------------------------------------------------------------------
         // App Manager Navigation
-        // -------------------------------------------------------------------------
-
         private void NavManageApps_Click(object sender, RoutedEventArgs e)
         {
             SwitchToManageGamesTab(sender, e);
@@ -4254,10 +4252,7 @@ namespace GithubLauncher
             _ = LoadAppCatalogAsync(forceRefresh: true);
         }
 
-        // -------------------------------------------------------------------------
-        // App Catalog: fetch, version check, render
-        // -------------------------------------------------------------------------
-
+        // App Catalog
         private static readonly string AppCatalogCachePath = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory, "app_catalog_cache.json");
 
@@ -4378,7 +4373,7 @@ namespace GithubLauncher
             return await client.GetStringAsync(url).ConfigureAwait(false);
         }
 
-        private record CatalogEntry(string Name, string Repository, string FolderName, string GameIconUrl, string Category);
+        private record CatalogEntry(string Name, string Repository, string FolderName, string AppIconUrl, string Category);
 
         private List<(string Category, List<CatalogEntry> Entries)> ParseCatalogJson(string json)
         {
@@ -4483,6 +4478,48 @@ namespace GithubLauncher
             infoStack.Children.Add(nameBlock);
             infoStack.Children.Add(repoBlock);
 
+            // Catalog icon
+            Control? iconControl = null;
+            if (!string.IsNullOrEmpty(entry.AppIconUrl))
+            {
+                try
+                {
+                    var image = new Image
+                    {
+                        Width = 48,
+                        Height = 48,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0, 0, 12, 0)
+                    };
+
+                    // try load remote image asynchronously
+                    _ = Task.Run(async () =>
+                    {
+                        try
+                        {
+                            using var client = new System.Net.Http.HttpClient();
+                            var imageData = await client.GetByteArrayAsync(entry.AppIconUrl);
+                            var bitmap = new Avalonia.Media.Imaging.Bitmap(new System.IO.MemoryStream(imageData));
+
+                            await Dispatcher.UIThread.InvokeAsync(() =>
+                            {
+                                image.Source = bitmap;
+                            });
+                        }
+                        catch
+                        {
+                            // can't be loaded
+                        }
+                    });
+
+                    iconControl = image;
+                }
+                catch
+                {
+                    // skip on fail
+                }
+            }
+
             var addButton = new Button
             {
                 Content = alreadyAdded ? "Added" : "Add",
@@ -4498,6 +4535,11 @@ namespace GithubLauncher
                 addButton.Tag = entry;
                 addButton.Click += CatalogAddEntry_Click;
             }
+
+            var contentStack = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 12, VerticalAlignment = VerticalAlignment.Center };
+            if (iconControl != null)
+                contentStack.Children.Add(iconControl);
+            contentStack.Children.Add(infoStack);
 
             var grid = new Grid
             {

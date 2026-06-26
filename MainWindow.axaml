@@ -2015,6 +2015,7 @@
 									</Border>
 								</StackPanel>
 							</ScrollViewer>
+
 							<!-- App Browser Tab -->
 							<ScrollViewer x:Name="AppBrowserTab" VerticalScrollBarVisibility="Auto" Margin="40" IsVisible="False">
 								<StackPanel Spacing="20">
