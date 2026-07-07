@@ -105,6 +105,7 @@ Type=Application
 Name=GithubLauncher
 Comment=Launcher for GitHub release apps and games
 Exec=$out/bin/githublauncher
+Icon=github
 Terminal=false
 Categories=Game;Utility;
 StartupNotify=true
